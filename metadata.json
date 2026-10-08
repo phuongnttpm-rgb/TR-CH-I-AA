@@ -1,0 +1,7 @@
+{
+  "name": "Đấu Trường Hóa Học 12 - Gameshow Triệu Phú Tri Thức",
+  "description": "Gameshow trắc nghiệm tương tác phong cách truyền hình đỉnh cao dành cho môn Hóa học 12 (Amino Acid & Peptide) với 15 mốc thử thách, 4 quyền trợ giúp, âm thanh kịch tính và chế độ trình chiếu lớp học.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
