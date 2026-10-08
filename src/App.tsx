@@ -584,7 +584,7 @@ export default function App() {
       </header>
 
       {/* MAIN CONTENT AREA - TOÀN BỘ KHÔNG GIAN DÀNH TRỌN CHO CÂU HỎI VÀ ĐÁP ÁN (KHÔNG CẦN CUỘN CHUỘT) */}
-      <main className="relative z-10 flex-1 min-h-0 overflow-hidden flex flex-col p-2 sm:p-3 max-w-7xl mx-auto w-full">
+      <main className="relative z-10 flex-1 min-h-0 overflow-hidden flex flex-col p-2 sm:p-3 md:p-3.5 max-w-[1920px] mx-auto w-full">
         {/* VIEW 1: WELCOME SCREEN */}
         {gamePhase === 'welcome' && (
           <div className="flex-1 flex flex-col items-center justify-center text-center max-w-3xl mx-auto my-auto py-4 overflow-y-auto">
@@ -666,11 +666,19 @@ export default function App() {
 
         {/* VIEW 2: ACTIVE GAMESHOW ARENA - FULLY CONTAINED IN ONE VIEWPORT */}
         {gamePhase !== 'welcome' && (
-          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
-            {/* Left/Center Column: Spacious Question & Answers Area (9 cols) */}
-            <div className="lg:col-span-9 flex flex-col justify-between h-full min-h-0 overflow-hidden">
-              {/* Central Question & Options Card (Fits entirely on single page) */}
-              <div className="flex-1 min-h-0 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-stretch">
+            {/* Cột Trái: Thang Điểm 15 Câu (Đã di chuyển sang bên trái theo yêu cầu) */}
+            <div className="lg:col-span-4 xl:col-span-3 h-full min-h-0 overflow-hidden order-2 lg:order-1">
+              <Ladder
+                currentLevel={currentQ.level}
+                isAnswerLocked={gamePhase === 'locking_suspense'}
+              />
+            </div>
+
+            {/* Cột Phải: Khu Vực Câu Hỏi & Đáp Án Được Mở Rộng Tối Đa (Chữ Lớn Nhìn Rõ Cuối Lớp) */}
+            <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-between h-full min-h-0 overflow-hidden order-1 lg:order-2">
+              {/* Central Question & Options Card (Mở rộng toàn màn hình) */}
+              <div className="flex-1 min-h-0 flex flex-col justify-center overflow-y-auto px-1 sm:px-2 pt-1 pb-1">
                 <QuestionCard
                   question={currentQ}
                   selectedOption={selectedOption}
@@ -682,27 +690,19 @@ export default function App() {
               </div>
 
               {/* Status info bar */}
-              <div className="flex items-center justify-between text-[11px] text-slate-400 px-2 pt-1 border-t border-slate-900/80 shrink-0">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="flex items-center justify-between text-xs text-slate-400 px-3 py-1 bg-slate-950/70 rounded-xl border border-slate-900 shrink-0">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-cyan-400" />
                   Mốc an toàn gần nhất:{' '}
                   <strong className="text-slate-200">
                     {currentQ.level > 10 ? 'Mốc 10 (22 Triệu)' : currentQ.level > 5 ? 'Mốc 5 (2 Triệu)' : 'Khởi đầu'}
                   </strong>
                 </span>
 
-                <span className="text-cyan-400/90 font-mono truncate max-w-sm">
+                <span className="text-cyan-400 font-mono font-medium truncate max-w-md">
                   {currentQ.sourceReference}
                 </span>
               </div>
-            </div>
-
-            {/* Right Column: 15-tier Ladder (3 cols) */}
-            <div className="lg:col-span-3 h-full min-h-0 overflow-hidden">
-              <Ladder
-                currentLevel={currentQ.level}
-                isAnswerLocked={gamePhase === 'locking_suspense'}
-              />
             </div>
           </div>
         )}

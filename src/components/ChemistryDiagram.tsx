@@ -10,8 +10,8 @@ export const ChemistryDiagram: React.FC<ChemistryDiagramProps> = ({ type, captio
   if (!type) return null;
 
   return (
-    <div className={`flex flex-col items-center justify-center p-2 rounded-xl bg-slate-900/85 border border-cyan-500/30 backdrop-blur shadow-inner shadow-cyan-950/40 ${className}`}>
-      <div className="w-full flex items-center justify-center max-h-24 sm:max-h-28 overflow-hidden">
+    <div className={`flex flex-col items-center justify-center py-1 px-2 rounded-lg bg-slate-900/90 border border-cyan-500/30 backdrop-blur shadow-inner shadow-cyan-950/40 ${className}`}>
+      <div className="w-full flex items-center justify-center max-h-16 sm:max-h-20 overflow-hidden">
         {type === 'general_structure' && (
           <svg viewBox="0 0 420 120" className="w-full max-w-md h-auto">
             {/* Background glow */}
@@ -327,7 +327,7 @@ export const ChemistryDiagram: React.FC<ChemistryDiagramProps> = ({ type, captio
       </div>
 
       {caption && (
-        <p className="mt-2 text-xs text-cyan-300/80 font-medium tracking-wide text-center">
+        <p className="mt-0.5 text-[10px] sm:text-[11px] text-cyan-300/80 font-medium tracking-wide text-center truncate max-w-full">
           🔬 {caption}
         </p>
       )}
